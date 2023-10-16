@@ -1,24 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle';
+import Sidebar from './Sidebar';
+import RightPanel from './RightPanel';
+import { useState } from 'react';
+
 
 function App() {
+
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
+
+  const openSidebar = () =>{
+    setOpenSidebarToggle(!openSidebarToggle)
+  }
+
+ 
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <div className='container-fluid'>
+<div className='row'>
+<div className='main_left col-lg-2 col-md-12 col-sm-12  px-0'>
+   <Sidebar openSidebarToggle={openSidebarToggle} openSidebar={openSidebar}/>
+  
+ </div>
+ <div className='main_right col-lg-10 col-md-12 col-sm-12 '>
+ <RightPanel openSidebar={openSidebar}/>
+ </div>
+
+</div>
+  
+
+</div>
+    
+    </>
   );
 }
 
